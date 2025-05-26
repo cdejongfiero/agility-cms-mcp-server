@@ -1,1 +1,1 @@
-export * from './agility-types';
+export * from './agility-types.js';
