@@ -1,0 +1,31 @@
+{
+  "name": "agility-mcp-server",
+  "version": "0.0.1",
+  "description": "agility-mcp-server MCP server",
+  "type": "module",
+  "bin": {
+    "agility-mcp-server": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && mcp-build",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "node test-tools.js",
+    "diagnose": "node sdk-diagnostic.js"
+  },
+  "dependencies": {
+    "@agility/management-sdk": "^0.1.23",
+    "dotenv": "^16.4.5",
+    "mcp-framework": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.19.0"
+  }
+}
