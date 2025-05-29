@@ -17,6 +17,32 @@ This MCP (Model Context Protocol) server provides comprehensive tools for fetchi
    ```
 
 2. **Configure environment variables:**
+  It's recommended to put the environment variables into your claude_desktop_config.json file like below - it is not necessary to include the filesystem MCP server, but it allows Claude to code in your codebase directly with Agility content details if you do so.
+
+  Unfortunately, I haven't created an oAuth flow, so the best way to get your Bearer access token is to use the https://mgmt.aglty.io/swagger/index.html Agility Management API playground and get it manually and fill it in. It will expire after 24 hours and you will need to replace it then.
+  {
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+	      "FILL-IN-YOUR-EXACT-PATH/agility-mcp-server"
+      ]
+    },
+  "agility-mcp-server": {
+   "command": "node",
+   "args": ["FILL-IN-YOUR-EXACT-PATH/agility-mcp-server/dist/index.js"],
+   "env": {
+          "AGILITY_ACCESS_TOKEN": "your-token-here",
+	        "AGILITY_WEBSITE_GUID": "your-guid-here",
+	        "AGILITY_LOCALE": "en-us"
+   }
+  }
+}
+}
+
+The following also works, but it can often have issues with refresh after the access token expires and is replaced - if you have that issue, then use the above method as it supersedes the .env file anyway.
    Copy `.env.example` to `.env` and fill in your Agility CMS credentials:
    ```bash
    cp .env.example .env
